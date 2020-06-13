@@ -1,6 +1,7 @@
 from typing import Tuple, Optional, Any
 import hashlib
 import binascii
+import base58check
 
 p = 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFC2F
 n = 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141
@@ -8,14 +9,21 @@ G = (0x79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798, 0x483AD
 
 Point = Tuple[int, int]
 
-def create_hash_from_string(data: str):
+def hash160(hex_str) -> str:
+    sha = hashlib.sha256()
+    rip = hashlib.new('ripemd160')
+    sha.update(hex_str.encode())
+    rip.update( sha.digest() )
+    return rip.hexdigest()
+
+def create_hash_from_string(data: str) -> str:
    return hashlib.sha256(data.encode('utf-8')).hexdigest() 
 
-def priv_key_from_hash(hash: str):
+def secr_key_from_hash(hash: str) -> int:
     return (int(hash,16)%p)
 
-def priv_key_from_string(data: str):
-    return priv_key_from_hash(create_hash_from_string(data))
+def secr_key_from_string(data: str) -> int:
+    return secr_key_from_hash(create_hash_from_string(data))
 
 def non_redeemable_tx(customer_addr,merchant_addr,amount):
     """the non redeemable transaction from the customer to the merchant to pay
@@ -63,3 +71,29 @@ def pubkey_gen(seckey: int) -> bytes:
     assert P is not None
     return bytes_from_point(P)
 
+def hex_to_p2pkh(pubkey: str, testnet=True) -> str:
+    #bytes_key=bytes.fromhex(pubkey)
+    if testnet:
+        version = '6f' # 111
+    else:
+        version = '00'
+    key_hash = version + hash160(pubkey)
+    checksum = create_hash_from_string(create_hash_from_string(key_hash))[0:8]
+    cat=key_hash+checksum
+    return base58check.b58encode(bytes.fromhex(cat)).decode()
+
+def seckey_to_wif(seckey: str, testnet=True):
+    if testnet:
+        version = 'ef'
+    else:
+        version = '80'
+    seckey=version+seckey
+    checksum = create_hash_from_string(create_hash_from_string(seckey))[0:8]
+    cat=seckey+checksum
+    return base58check.b58encode(bytes.fromhex(cat)).decode()
+    
+def days_to_blocks(days: int) -> int:
+    # there are 6 blocks per hour on average in Bitcoin
+    # therefore there are 6*24=144 blocks per day
+    return days*144
+    

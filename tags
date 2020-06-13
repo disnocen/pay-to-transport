@@ -1,0 +1,47 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+G	p2t.py	/^G = (0x79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798, 0x483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8)$/;"	v
+Point	p2t.py	/^Point = Tuple[int, int]$/;"	v
+bytes_from_int	p2t.py	/^def bytes_from_int(x: int) -> bytes:$/;"	f
+bytes_from_point	p2t.py	/^def bytes_from_point(P: Point) -> bytes:$/;"	f
+create_hash_from_string	p2t.py	/^def create_hash_from_string(data: str) -> str:$/;"	f
+customer_derived_pubkey	basic-transport.py	/^customer_derived_pubkey=p2t.bytes_from_point(p2t.point_add(customer_public_key,public_label))$/;"	v
+customer_name	basic-transport.py	/^customer_name='C'$/;"	v
+customer_public_key	basic-transport.py	/^customer_public_key=p2t.pubkey_gen(customer_secr_key)$/;"	v
+customer_secr_key	basic-transport.py	/^customer_secr_key=p2t.secr_key_from_string(customer_secr_key_seed)$/;"	v
+customer_secr_key_seed	basic-transport.py	/^customer_secr_key_seed="seed for secret key of customer"$/;"	v
+delta_customer_merchant	basic-transport.py	/^delta_customer_merchant=2$/;"	v
+delta_merchant_customer	basic-transport.py	/^delta_merchant_customer=3$/;"	v
+delta_tilde_merchant_cusomer	basic-transport.py	/^delta_tilde_merchant_cusomer=delta_merchant_customer+delta_customer_merchant+epsilon$/;"	v
+epsilon	basic-transport.py	/^epsilon=1$/;"	v
+hash160	p2t.py	/^def hash160(hex_str) -> str:$/;"	f
+hex_to_p2pkh	p2t.py	/^def hex_to_p2pkh(pubkey: str, testnet=True) -> str:$/;"	f
+merchant_derived_pubkey	basic-transport.py	/^merchant_derived_pubkey=p2t.bytes_from_point(p2t.point_add(merchant_public_key,public_label))$/;"	v
+merchant_name	basic-transport.py	/^merchant_name='M'$/;"	v
+merchant_public_key	basic-transport.py	/^merchant_public_key=p2t.pubkey_gen(merchant_secr_key)$/;"	v
+merchant_secr_key	basic-transport.py	/^merchant_secr_key=p2t.secr_key_from_string(merchant_secr_key_seed)$/;"	v
+merchant_secr_key_seed	basic-transport.py	/^merchant_secr_key_seed="seed for secret key of merchant"$/;"	v
+n	p2t.py	/^n = 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141$/;"	v
+non_redeemable_tx	p2t.py	/^def non_redeemable_tx(customer_addr,merchant_addr,amount):$/;"	f
+order	basic-transport.py	/^order=json.dumps(order)$/;"	v
+order	basic-transport.py	/^order={"item_id":"AA87F","quantity":3,"cost_per_item":0.001}$/;"	v
+p	p2t.py	/^p = 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFC2F$/;"	v
+point_add	p2t.py	/^def point_add(P1: Optional[Point], P2: Optional[Point]) -> Optional[Point]:$/;"	f
+point_mul	p2t.py	/^def point_mul(P: Optional[Point], n: int) -> Optional[Point]:$/;"	f
+pubkey_gen	p2t.py	/^def pubkey_gen(seckey: int) -> bytes:$/;"	f
+public_label	basic-transport.py	/^public_label=p2t.pubkey_gen(secr_label)$/;"	v
+seckey_to_wif	p2t.py	/^def seckey_to_wif(seckey: str, testnet=True):$/;"	f
+secr_key_from_hash	p2t.py	/^def secr_key_from_hash(hash: str) -> int:$/;"	f
+secr_key_from_string	p2t.py	/^def secr_key_from_string(data: str) -> int:$/;"	f
+secr_label	basic-transport.py	/^secr_label=p2t.secr_key_from_string(order)$/;"	v
+transporter_derived_pubkey	basic-transport.py	/^transporter_derived_pubkey=p2t.bytes_from_point(p2t.point_add(transporter_public_key,public_label))$/;"	v
+transporter_name	basic-transport.py	/^transporter_name='T'$/;"	v
+transporter_public_key	basic-transport.py	/^transporter_public_key=p2t.pubkey_gen(transporter_secr_key)$/;"	v
+transporter_secr_key	basic-transport.py	/^transporter_secr_key=p2t.secr_key_from_string(transporter_secr_key_seed)$/;"	v
+transporter_secr_key_seed	basic-transport.py	/^transporter_secr_key_seed="seed for secret key of transporter"$/;"	v
+x	p2t.py	/^def x(P: Point) -> int:$/;"	f
+y	p2t.py	/^def y(P: Point) -> int:$/;"	f
